@@ -1,4 +1,5 @@
 ## Star Wars API
+![All branches](https://github.com/Patrolfr/apisw/workflows/All%20branches/badge.svg?branch=apisw%2Fdevelopment)
 
 Simple REST service which returns details of Star Wars characters.
 
