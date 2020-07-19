@@ -7,6 +7,9 @@ Implementation may produce n+1 alike problem since Star Wars characters tends to
 and swapi.dev search query does not support searching by any ranges (especially id range),  
 so HATEOAS resources may be fetched only in 'request per single resource' mode.
 
+## Swagger (OpenApi 3.0)
+http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+
 ### Exercise:
 
 Zadanie polega na przygotowaniu usługi REST która zwróci:
