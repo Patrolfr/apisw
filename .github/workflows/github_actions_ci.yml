@@ -18,6 +18,6 @@ jobs:
         with:
           java-version: 1.11
       - name: Gradle test
-        run: gradle tet
+        run: gradle test
 #       - name: Maven Verify
 #         run: mvn -B clean verify
