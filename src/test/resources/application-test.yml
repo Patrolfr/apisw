@@ -1,0 +1,4 @@
+feign:
+  client:
+    name: SWAPI
+    url: localhost:8087/api # hit localhost for easier stubbing
