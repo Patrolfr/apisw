@@ -8,8 +8,18 @@ Implementation may produce n+1 alike problem since Star Wars characters tends to
 and swapi.dev search query does not support searching by any ranges (especially id range),  
 so HATEOAS resources may be fetched only in 'request per single resource' mode.
 
-## Swagger (OpenApi 3.0)
-http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+### Build
+- Clone repo and navigate to project root directory.
+- Generate gradle wrapper `gradle wrapper`
+#### a) Run from sources
+- Run `./gradlew bootRun`
+#### b) Docker container
+- Build JAR `./gradlew clean build`
+- Build docker image `docker build -t fraczekgo/apisw-app . `
+- Start container `docker run -p 8080:8080 fraczekgo/apisw-app`
+
+#### Swagger (OpenApi 3.0)
+[http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/]()
 
 ### Exercise:
 
