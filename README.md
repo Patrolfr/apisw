@@ -17,8 +17,12 @@ so HATEOAS resources may be fetched only in 'request per single resource' mode.
 - Build JAR `./gradlew clean build`
 - Build docker image `docker build -t fraczekgo/apisw-app . `
 - Start container `docker run -p 8080:8080 fraczekgo/apisw-app`
+#### c) App and Prometheus
+- Create image before
+- Run `docker-compse up`
 
 #### Swagger (OpenApi 3.0)
+Swagger resources generated from OpenApi 3.0 spec are available at:  
 [http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/]()
 
 ### Exercise:
