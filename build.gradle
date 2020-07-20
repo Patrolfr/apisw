@@ -41,6 +41,8 @@ dependencies {
     testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: '2.27.1', ext: 'pom'
     testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '2.2.3.RELEASE'
     compile group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.4.3'
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.5.2'
 }
 
 dependencyManagement {
