@@ -8,6 +8,8 @@ class SwapiErrorDecoder implements ErrorDecoder {
 
     @Override
     public Exception decode(String methodKey, Response response) {
-        return new SwapiServiceUnavailableRuntimeExc("Swapi API error.");
+        return new SwapiServiceUnavailableRuntimeExc(
+                String.format("Swapi error, API responded with status %d", response.status())
+        );
     }
 }

@@ -1,5 +1,5 @@
 ## Star Wars API
-![All branches](https://github.com/Patrolfr/apisw/workflows/All%20branches/badge.svg?branch=apisw%2Fdevelopment)
+![Test all branches](https://github.com/Patrolfr/apisw/workflows/Test%20all%20branches/badge.svg)
 
 Simple REST service which returns details of Star Wars characters.
 
@@ -11,16 +11,16 @@ so HATEOAS resources may be fetched only in 'request per single resource' mode.
 ### Build
 - Clone repo and navigate to project root directory.
 - Generate gradle wrapper `gradle wrapper`
-#### a) Run from sources
+#### a) Run app from sources
 - Run `./gradlew bootRun`
-#### b) Docker container
+#### b) Run app on Docker container
 - Build JAR `./gradlew clean build`
 - Build docker image `docker build -t fraczekgo/apisw-app . `
 - Start container `docker run -p 8080:8080 fraczekgo/apisw-app`
 #### c) App and Prometheus
-- Create image before
+- Create image as before
 - Run `docker-compse up`
-
+- Prometheus container is mapped to port 9090 and graphs can be examined at [http://localhost:9090/graph]()
 #### Swagger (OpenApi 3.0)
 Swagger resources generated from OpenApi 3.0 spec are available at:  
 [http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/]()

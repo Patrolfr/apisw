@@ -10,12 +10,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @AutoConfigureMockMvc
-class IntegrationTest extends HttpIntegrationTest {
+class CharacterIntegrationTest extends HttpIntegrationTest {
 
     private static final SWAPI_PEOPLE_PAGE_URL = '/api/people/?page='
     private static final SWAPI_PEOPLE_URL = '/api/people/'
     private static final SWAPI_PLANETS_URL = '/api/planets/'
-    private static final SWAPI_STARSHiPS_URL = '/api/starships/'
+    private static final SWAPI_STARSHIPS_URL = '/api/starships/'
 
     private static final FIRST_CHARACTER_PAGE_URL = '/characters/?page=1'
     private static final CHARACTER_URL = '/characters/'
@@ -25,18 +25,23 @@ class IntegrationTest extends HttpIntegrationTest {
     MockMvc mockMvc
 
     def 'given swapi api error 4xx or 5xx should return message'() {
-        given: ''
+        given:
+        'swapi ' + status + ' response status'
         customStubFor(swapiPeopleUrl(500), {
-            response -> response.withStatus(500).withBody('internal server error')
+            response -> response.withStatus(status).withBody(body)
         })
 
         when: 'get for character with id 500'
         def result = mockMvc.perform(MockMvcRequestBuilders.get(characterUrl(500)))
 
-        then: ''
+        then: 'should return 404 with swapi error status message'
         result
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath('$.msg').value('Swapi API error.'))
+                .andExpect(jsonPath('$.msg').value('Swapi error, API responded with status ' + status))
+        where:
+        status | body
+        400    | 'some bad request msg'
+        500    | 'internal server error'
     }
 
     def 'given not present swapi people page resource should return 404'() {
@@ -85,7 +90,7 @@ class IntegrationTest extends HttpIntegrationTest {
     def 'given inconsistent swapi responses should still return valid character'() {
         given: 'stubbed swapi people response but not stubbed planet and starship'
         def luke = CharacterModels.getLuke()
-        customStubFor(swapiPeopleUrl(1), { response -> response.withBody(luke.toString()) })
+        customStubFor(swapiPeopleUrl(1))
 
         when: 'get for character with id 1'
         def result = mockMvc.perform(MockMvcRequestBuilders.get(FIRST_CHARACTER_URL))
@@ -103,7 +108,7 @@ class IntegrationTest extends HttpIntegrationTest {
         def luke = CharacterModels.getLuke()
         def tatooine = CharacterModels.getTatooine()
         def xWing = CharacterModels.getXWing()
-        customStubFor(swapiPeopleUrl(1), { response -> response.withBody(luke.toString()) })
+        customStubFor(swapiPeopleUrl(1))
         customStubFor(swapiPlanetsUrl(1), {response -> response.withBody(tatooine.toString())})
         customStubFor(swapiStarshipsUrl(12), {response -> response.withBody(xWing.toString())})
 
@@ -133,11 +138,10 @@ class IntegrationTest extends HttpIntegrationTest {
     }
 
     private static def swapiStarshipsUrl(id) {
-        return SWAPI_STARSHiPS_URL + id + '/'
+        return SWAPI_STARSHIPS_URL + id + '/'
     }
 
     private static def characterUrl(id) {
         return CHARACTER_URL + id
     }
-
 }
