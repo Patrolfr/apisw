@@ -13,17 +13,17 @@ class CharacterDtoCreator {
             PeopleResponse peopleResponse,
             List<StarshipDto> starships
     ) {
-        return CharacterDto.builder()
-                .name(peopleResponse.getName())
-                .height(peopleResponse.getHeight())
-                .mass(peopleResponse.getMass())
-                .hairColor(peopleResponse.getHairColor())
-                .skinColor(peopleResponse.getSkinColor())
-                .eyeColor(peopleResponse.getEyeColor())
-                .birthYear(peopleResponse.getBirthYear())
-                .homeworld(homeworld)
-                .starships(starships)
-                .build();
+        return new CharacterDto(
+                peopleResponse.getName(),
+                peopleResponse.getHeight(),
+                peopleResponse.getMass(),
+                peopleResponse.getHairColor(),
+                peopleResponse.getSkinColor(),
+                peopleResponse.getEyeColor(),
+                peopleResponse.getBirthYear(),
+                homeworld,
+                starships
+        );
     }
 
     private CharacterDtoCreator() {

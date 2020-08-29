@@ -1,5 +1,6 @@
 package go.fraczek.apisw.character
 
+import com.github.tomakehurst.wiremock.client.WireMock
 import go.fraczek.apisw.HttpIntegrationTest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -23,6 +24,10 @@ class CharacterIntegrationTest extends HttpIntegrationTest {
 
     @Autowired
     MockMvc mockMvc
+
+    def cleanup() {
+        WireMock.reset()
+    }
 
     def 'given swapi api error 4xx or 5xx should return message'() {
         given:
@@ -109,8 +114,8 @@ class CharacterIntegrationTest extends HttpIntegrationTest {
         def tatooine = CharacterModels.getTatooine()
         def xWing = CharacterModels.getXWing()
         customStubFor(swapiPeopleUrl(1))
-        customStubFor(swapiPlanetsUrl(1), {response -> response.withBody(tatooine.toString())})
-        customStubFor(swapiStarshipsUrl(12), {response -> response.withBody(xWing.toString())})
+        customStubFor(swapiPlanetsUrl(1), { response -> response.withBody(tatooine.toString()) })
+        customStubFor(swapiStarshipsUrl(12), { response -> response.withBody(xWing.toString()) })
 
         when: 'get for character with id 1'
         def result = mockMvc.perform(MockMvcRequestBuilders.get(FIRST_CHARACTER_URL))

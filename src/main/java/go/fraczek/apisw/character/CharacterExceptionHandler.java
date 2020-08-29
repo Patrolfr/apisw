@@ -12,13 +12,8 @@ import java.util.Map;
 @RestControllerAdvice
 class CharacterExceptionHandler {
 
-    @ExceptionHandler(value = SwapiResourceNotFoundRuntimeExc.class)
-    ResponseEntity<Map<String, String>> hangleCharacterNotFoundException(SwapiResourceNotFoundRuntimeExc e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("msg", e.getMessage()));
-    }
-
-    @ExceptionHandler(value = SwapiServiceUnavailableRuntimeExc.class)
-    ResponseEntity<Map<String, String>> hangleSwapiServiceUnavilableException(SwapiServiceUnavailableRuntimeExc e) {
+    @ExceptionHandler(value = {SwapiResourceNotFoundRuntimeExc.class, SwapiServiceUnavailableRuntimeExc.class})
+    ResponseEntity<Map<String, String>> hangleSwapiServiceUnavilableException(RuntimeException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("msg", e.getMessage()));
     }
 }

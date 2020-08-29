@@ -10,11 +10,10 @@ class CharacterPageDtoCreator {
     private static final int SWAPI_PAGE_SIZE = 10;
 
     static CharacterPageDto ofElementsAndCount(List<CharacterDto> pageElements, int allElementsCount) {
-        return CharacterPageDto.builder()
-                .elements(pageElements)
-                .count(allElementsCount)
-                .pages(1 + allElementsCount / SWAPI_PAGE_SIZE)
-                .build();
+
+        final int allPagesNumber = 1 + allElementsCount / SWAPI_PAGE_SIZE;
+
+        return new CharacterPageDto(allElementsCount, pageElements, allPagesNumber);
     }
 
     private CharacterPageDtoCreator() {

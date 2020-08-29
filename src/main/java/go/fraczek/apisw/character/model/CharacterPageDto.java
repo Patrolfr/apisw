@@ -1,15 +1,13 @@
 package go.fraczek.apisw.character.model;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 
-@Getter
-@Builder
+@Value
 public class CharacterPageDto {
 
-    private int count;
-    private int pages;
-    private List<CharacterDto> elements;
+    int count;
+    List<CharacterDto> elements;
+    int pages;
 }
