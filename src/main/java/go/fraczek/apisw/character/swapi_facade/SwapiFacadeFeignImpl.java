@@ -5,6 +5,7 @@ import go.fraczek.apisw.character.model.CharacterPageDto;
 import go.fraczek.apisw.character.model.PlanetDto;
 import go.fraczek.apisw.character.model.StarshipDto;
 import go.fraczek.apisw.character.swapi_facade.exception.SwapiResourceNotFoundRuntimeExc;
+import go.fraczek.apisw.common.UrlIdExtractor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

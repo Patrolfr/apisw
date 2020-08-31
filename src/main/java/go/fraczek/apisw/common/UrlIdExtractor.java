@@ -1,10 +1,10 @@
-package go.fraczek.apisw.character.swapi_facade;
+package go.fraczek.apisw.common;
 
 import java.util.Optional;
 
-class UrlIdExtractor {
+public class UrlIdExtractor {
 
-    static Optional<Long> extractId(String resourceUrl) {
+    public static Optional<Long> extractId(String resourceUrl) {
         if(resourceUrl == null) {
             return Optional.empty();
         }
