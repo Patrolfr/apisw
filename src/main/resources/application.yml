@@ -1,0 +1,11 @@
+feign:
+  client:
+    name: SWAPI
+    url: https://swapi.dev/api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus'
+        exclude:
